@@ -1,0 +1,240 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Displayer Battery_2 Battery_1 Cutter_Right Cutter_Left Cutter_Middle Traction_Right Traction_Left Master
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ Temp_NTC_Cutter_R : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Temp_Coil_Cutter_R : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 385 Master_Tx_PDO1: 8 Master
+
+BO_ 1555 Master_To_CRight_613: 8 Master
+
+BO_ 1554 Master_To_CLeft_612: 8 Master
+
+BO_ 1553 Master_To_TRight_611: 8 Master
+
+BO_ 1552 Master_To_TLeft_610: 8 Master
+
+BO_ 897 Tx_PDO3_Master: 8 Master
+ SG_ Software_Major_Version : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Software_Minor_Version : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Year_LSB : 16|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Year_MSB : 24|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Month : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Date : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 641 Tx_PDO2_Master: 8 Master
+ SG_ PTO_Switch_State : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Seat_Switch_State : 1|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Brake_Switch_State : 2|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Blade_Speed_Switch_State : 3|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LOP_State : 4|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ ROP_State : 5|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Drive_Speed_Switch_1_State : 6|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Drive_Speed_Switch_2_State : 7|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Traction_Left_Enable_Flag : 16|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Traction_Right_Enable_Flag : 17|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Cutter_Left_Enable_Flag : 18|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Cutter_Right_Enable_Flag : 19|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Cutter_Middle_Enable_Flag : 20|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ E_braker_Left_Enable_Flag : 21|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ E_braker_Right_Enable_Flag : 22|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Traction_Left_Fault : 32|16@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Traction_Right_Fault : 48|16@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 660 Tx_PDO2_Cutter_M: 8 Cutter_Middle
+ SG_ RVSR2 : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ RVSR1 : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Phase_Curr_Cutter_M : 16|16@1+ (0.01,0) [0|655.35] "A" Vector__XXX
+ SG_ Temp_NTC_Cutter_M : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Temp_Coil_Cutter_M : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Bus_Curr_Cutter_M : 0|16@1+ (0.01,0) [0|655.35] "A" Vector__XXX
+
+BO_ 659 Tx_PDO2_Cutter_R: 8 Cutter_Right
+ SG_ Temp_NTC_Cutter_R : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Temp_Coil_Cutter_R : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ RVSR2 : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ RVSR1 : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Phase_Curr_Cutter_R : 16|16@1+ (0.01,0) [0|655.35] "A" Vector__XXX
+ SG_ Bus_Curr_Cutter_R : 0|16@1+ (0.01,0) [0|655.35] "A" Vector__XXX
+
+BO_ 658 Tx_PDO2_Cutter_L: 8 Cutter_Left
+ SG_ RVSR2 : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ RVSR1 : 32|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Phase_Curr_Cutter_L : 16|16@1+ (0.01,0) [0|655.35] "A" Vector__XXX
+ SG_ Temp_NTC_Cutter_L : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Temp_Coil_Cutter_L : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Bus_Curr_Cutter_L : 0|16@1+ (0.01,0) [0|655.35] "A" Vector__XXX
+
+BO_ 657 Tx_PDO2_Traction_R: 8 Traction_Right
+ SG_ Traction_R_Sensor_AD : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ Temp_NTC_Traction_R : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Temp_Coil_Traction_R : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Phase_Curr_Traction_R : 16|16@1+ (0.01,0) [0|655.35] "A" Vector__XXX
+ SG_ Bus_Curr_Traction_R : 0|16@1+ (0.01,0) [0|655.35] "A" Vector__XXX
+
+BO_ 656 Tx_PDO2_Traction_L: 8 Traction_Left
+ SG_ Traction_L_Sensor_AD : 32|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ Temp_NTC_Traction_L : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Temp_Coil_Traction_L : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Phase_Curr_Traction_L : 16|16@1+ (0.01,0) [0|655.35] "A" Vector__XXX
+ SG_ Bus_Curr_Traction_L : 0|16@1+ (0.01,0) [0|655.35] "A" Vector__XXX
+
+BO_ 404 Tx_PDO1_Cutter_M: 8 Cutter_Middle
+ SG_ UV_FLG_Cutter_M : 34|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ UART_ERR_Cutter_M : 41|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ STR_FAULT_Cutter_M : 37|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ STALL_FAULT_Cutter_M : 38|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Speed_Cutter_M : 48|16@1+ (1,0) [0|65535] "RPM" Vector__XXX
+ SG_ Run_Mode_Cutter_M : 0|4@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ PWM_STA_Cutter_M : 9|2@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ OV_FLG_Cutter_M : 33|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ OC_FLG_Cutter_M : 32|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ NTC_OT_FLG_Cutter_M : 35|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LOSS_STEP_Cutter_M : 39|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LOSS_PHASE_Cutter_M : 40|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_RECORD_Cutter_M : 16|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ DRV_FLG_Cutter_M : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ COIL_OT_FLG_Cutter_M : 36|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ CAN_ERR_Cutter_M : 42|1@1+ (1,0) [0|1] "" Vector__XXX
+
+
+BO_ 403 Tx_PDO1_Cutter_R: 8 Cutter_Right
+ SG_ UV_FLG_Cutter_R : 34|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ UART_ERR_Cutter_R : 41|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ STR_FAULT_Cutter_R : 37|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ STALL_FAULT_Cutter_R : 38|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Speed_Cutter_R : 48|16@1+ (1,0) [0|65535] "RPM" Vector__XXX
+ SG_ Run_Mode_Cutter_R : 0|4@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ PWM_STA_Cutter_R : 9|2@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ OV_FLG_Cutter_R : 33|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ OC_FLG_Cutter_R : 32|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ NTC_OT_FLG_Cutter_R : 35|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LOSS_STEP_Cutter_R : 39|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LOSS_PHASE_Cutter_R : 40|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_RECORD_Cutter_R : 16|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ DRV_FLG_Cutter_R : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ COIL_OT_FLG_Cutter_R : 36|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ CAN_ERR_Cutter_R : 42|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 402 Tx_PDO1_Cutter_L: 8 Cutter_Left
+ SG_ UV_FLG_Cutter_L : 34|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ UART_ERR_Cutter_L : 41|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ STR_FAULT_Cutter_L : 37|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ STALL_FAULT_Cutter_L : 38|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Speed_Cutter_L : 48|16@1+ (1,0) [0|65535] "RPM" Vector__XXX
+ SG_ Run_Mode_Cutter_L : 0|4@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ PWM_STA_Cutter_L : 9|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ OV_FLG_Cutter_L : 33|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ OC_FLG_Cutter_L : 32|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ NTC_OT_FLG_Cutter_L : 35|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LOSS_STEP_Cutter_L : 39|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LOSS_PHASE_Cutter_L : 40|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_RECORD_Cutter_L : 16|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ DRV_FLG_Cutter_L : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ COIL_OT_FLG_Cutter_L : 36|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ CAN_ERR_Cutter_L : 42|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 401 Tx_PDO1_Traction_R: 8 Vector__XXX
+ SG_ UV_FLG_Traction_R : 34|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ UART_ERR_Traction_R : 41|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ STR_FAULT_Traction_R : 37|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ STALL_FAULT_Traction_R : 38|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Speed_Traction_R : 48|16@1+ (1,0) [0|65535] "RPM" Vector__XXX
+ SG_ Run_Mode_Traction_R : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ PWM_STA_Traction_R : 9|2@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ OV_FLG_Traction_R : 33|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ OC_FLG_Traction_R : 32|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ NTC_OT_FLG_Traction_R : 35|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LOSS_STEP_Traction_R : 39|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LOSS_PHASE_Traction_R : 40|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ HALL_ERR_Traction_R : 43|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_RECORD_Traction_R : 16|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ DRV_FLG_Traction_R : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ COIL_OT_FLG_Traction_R : 36|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ CAN_ERR_Traction_R : 42|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 400 Tx_PDO1_Traction_L: 8 Traction_Left
+ SG_ UV_FLG_Traction_L : 34|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ UART_ERR_Traction_L : 41|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ STR_FAULT_Traction_L : 37|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ STALL_FAULT_Traction_L : 38|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Speed_Traction_L : 48|16@1+ (1,0) [0|65535] "RPM" Vector__XXX
+ SG_ Run_Mode_Traction_L : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ PWM_STA_Traction_L : 9|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ OV_FLG_Traction_L : 33|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ OC_FLG_Traction_L : 32|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ NTC_OT_FLG_Traction_L : 35|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LOSS_STEP_Traction_L : 39|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LOSS_PHASE_Traction_L : 40|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ HALL_ERR_Traction_L : 43|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ FAULT_RECORD_Traction_L : 16|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ DRV_FLG_Traction_L : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ COIL_OT_FLG_Traction_L : 36|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ CAN_ERR_Traction_L : 42|1@1+ (1,0) [0|1] "" Vector__XXX
+
+CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
+CM_ SG_ 658 Bus_Curr_Cutter_L "Bus line current";
+CM_ SG_ 402 Run_Mode_Cutter_L "0: Standby
+";
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType";
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 0;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","not_used","not_used","not_used","not_used","Cyclic","not_used","IfActive","NoMsgSendType";
+BA_DEF_ BU_  "NmStationAddress" HEX 0 0;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_ "BusType" "CAN";
+BA_ "DBName" "JEeZTRdbc";
+BA_ "NmStationAddress" BU_ Displayer 123;
+BA_ "NmStationAddress" BU_ Battery_2 50;
+BA_ "NmStationAddress" BU_ Battery_1 49;
+BA_ "NmStationAddress" BU_ Cutter_Right 19;
+BA_ "NmStationAddress" BU_ Cutter_Left 18;
+BA_ "NmStationAddress" BU_ Traction_Right 17;
+BA_ "NmStationAddress" BU_ Traction_Left 16;
+BA_ "NmStationAddress" BU_ Master 1;
+BA_ "GenMsgSendType" BO_ 402 1;
+
