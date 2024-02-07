@@ -104,22 +104,22 @@ if st.session_state["converted"]:
 
     st.sidebar.subheader("Download")
     
-    selected_files = st.sidebar.multiselect(label="Column Types", options=mdf_file_names)
+    # selected_files = st.sidebar.multiselect(label="Column Types", options=mdf_file_names)
 
-    df_xlsx = BytesIO()
-    check_disable = False
-    if not selected_files:
-        df_xlsx = dc.to_excel(groups["00000001.MF4"])
+    # df_xlsx = "test"
+    # check_disable = False
+    # if not selected_files:
+    df_xlsx = dc.to_excel(groups["00000001.MF4"])
         # df_xlsx = dc.to_excel(groups, selected_files)
-        check_disable = True
+        # check_disable = True
 
-    download_button = st.sidebar.download_button(
+    st.sidebar.download_button(
         label="Download Data",
         data=df_xlsx,
         file_name="output.xlsx",
+        mime="application/vnd.ms-excel",
         type="primary",
-        use_container_width=True,
-        disabled=check_disable
+        use_container_width=True
     )
 
 if __name__ == "__main__":
