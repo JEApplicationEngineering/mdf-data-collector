@@ -1,7 +1,7 @@
-import asammdf
 import numpy as np
 import pandas as pd
 import os, glob
+from asammdf import MDF
 from io import BytesIO
 
 # TODO: pull headers from mdf (extracted var)
