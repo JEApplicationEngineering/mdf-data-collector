@@ -2,17 +2,18 @@ import streamlit as st
 import os
 from DataCollector import DataCollector
 
-def convert(mdf_files, dc):
+@st.cache_data
+def convert(mdf_files, dbc_files):
     print("\nconverting...")
+
+    dc = DataCollector(dbc_files)
 
     mdf_file_names = [file.name for file in mdf_files]
     groups = dict.fromkeys(mdf_file_names)
 
     for file in mdf_files:
         groups[file.name] = dc.parse(file)
-        st.toast(f"Data collection is complete for {file.name}.")
-    
-    st.session_state["converted"] = True
+        # st.toast(f"Data collection is complete for {file.name}.")
     
     return groups
 

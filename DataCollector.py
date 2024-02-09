@@ -4,13 +4,12 @@ import os, glob
 import asammdf
 from io import BytesIO
 
-# TODO: pull headers from mdf (extracted var)
 # TODO: format data into dataframe
 # TODO: utilize plotly instead of pandas.plot
-# TODO: add dropdown to select which graph to display
-# TODO: add comments/minor changes
 # TODO: consider changing .xlsx to .csv
 # TODO: generate zip file for downloads
+# TODO: find a way to bulk upload .mf4
+# TODO: add select file download option
 
 class DataCollector:
   def __init__(self, dbc_files: list = []) -> None:
@@ -44,6 +43,19 @@ class DataCollector:
 
     # linearly maps group_names to indexes of groups
     groups = dict(zip(group_names, groups))
+
+    # change unsigned int on traction to signed
+    for key,group in groups.items():
+      if 'PDO1_Traction_L' in key:
+        needsUpdated = group.loc[group['Speed_Traction_L'] > 10000]
+        needsUpdated = needsUpdated['Speed_Traction_L'].apply(lambda x: x - 65535)
+        group.loc[needsUpdated.index, 'Speed_Traction_L'] = needsUpdated
+
+      if 'PDO1_Traction_R' in key:
+        needsUpdated = group.loc[group['Speed_Traction_R'] > 10000]
+        needsUpdated = needsUpdated['Speed_Traction_R'].apply(lambda x: (x - 65535))
+        group.loc[needsUpdated.index, 'Speed_Traction_R'] = needsUpdated
+
     return groups
   
   def graph(self, groups: dict, folder_path: str = 'output') -> None:

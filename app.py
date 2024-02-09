@@ -26,6 +26,16 @@ if "converted" not in st.session_state:
 else:
     st.session_state["converted"] = True if st.session_state["converted"] else False
 
+if "dbc_file_upload" not in st.session_state:
+    files_uploaded = False
+else:
+    files_uploaded = True if st.session_state["dbc_file_upload"] else False
+
+if "mdf_file_upload" not in st.session_state:
+    files_uploaded = False
+else:
+    files_uploaded = True if st.session_state["mdf_file_upload"] else False
+
 #########################################
 
 # initialize headers
@@ -42,20 +52,24 @@ with st.sidebar:
         "Upload your .DBC files", 
         type=['dbc'], 
         accept_multiple_files=True,
+        key="dbc_file_upload",
+        help="Import your .DBC files",
         on_change=reset_page
     )
     mdf_files = st.file_uploader(
         "Upload your .MF4 files", 
         type=['mf4', 'mdf'], 
         accept_multiple_files=True,
+        key="mdf_file_upload",
+        help="Import your MDF files",
         on_change=reset_page
     )
     convert_button = st.button(
         label="Convert", 
-        type="primary", 
-        use_container_width=True,
+        type="primary",
         on_click=save_files,
-        args=(dbc_files, mdf_files)
+        args=(dbc_files, mdf_files),
+        use_container_width=True
     )
 
 #########################################
@@ -67,8 +81,9 @@ dc = DataCollector(dbc_path)
 #########################################
 
 # display selectbox with DBC groups
-if convert_button or st.session_state["converted"]:
-    groups = convert(mdf_files, dc) if mdf_files else {}
+if (convert_button or st.session_state["converted"]) and files_uploaded:
+    groups = convert(mdf_files, dbc_path)
+    st.session_state["converted"] = True
 
     mdf_file_names = [file.name for file in mdf_files]
 
@@ -76,13 +91,11 @@ if convert_button or st.session_state["converted"]:
         label="Select .MF4 to View",
         options=mdf_file_names,
         key="selected_file",
-        placeholder="Select File..."
     )
     selected_group = st.selectbox(
         label="Select Group to Graph", 
         options=groups[selected_file].keys(),
         key="selected_groups",
-        placeholder="Select group...",
     )
 
     if selected_group:
