@@ -13,7 +13,6 @@ def convert(mdf_files, dbc_files):
 
     for file in mdf_files:
         groups[file.name] = dc.parse(file)
-        # st.toast(f"Data collection is complete for {file.name}.")
     
     return groups
 
