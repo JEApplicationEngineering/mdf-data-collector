@@ -1,12 +1,10 @@
 # import streamlit, pandas, and numpy
 import streamlit as st
-import pandas as pd
-import numpy as np
-
-from io import BytesIO
 
 from DataCollector import DataCollector
 from utils.dashboard import *
+
+# TODO: add form to save to metadata.csv (cut height, ambient temp, etc.)
 
 #########################################
 
@@ -25,6 +23,11 @@ if "converted" not in st.session_state:
     st.session_state["converted"] = False
 else:
     st.session_state["converted"] = True if st.session_state["converted"] else False
+
+if "downloaded" not in st.session_state:
+    st.session_state["downloaded"] = False
+else:
+    st.session_state["downloaded"] = True if st.session_state["downloaded"] else False
 
 if "dbc_file_upload" not in st.session_state:
     files_uploaded = False
@@ -46,9 +49,9 @@ st.sidebar.header("File Uploader")
 
 # display file uploaders in sidebar
 with st.sidebar:
-    st.subheader("Upload")
+    upload_conainter = st.expander('Upload', expanded=True)
 
-    dbc_files = st.file_uploader(
+    dbc_files = upload_conainter.file_uploader(
         "Upload your .DBC files", 
         type=['dbc'], 
         accept_multiple_files=True,
@@ -56,7 +59,7 @@ with st.sidebar:
         help="Import your .DBC files",
         on_change=reset_page
     )
-    mdf_files = st.file_uploader(
+    mdf_files = upload_conainter.file_uploader(
         "Upload your .MF4 files", 
         type=['mf4', 'mdf'], 
         accept_multiple_files=True,
@@ -64,9 +67,9 @@ with st.sidebar:
         help="Import your MDF files",
         on_change=reset_page
     )
-    convert_button = st.button(
+    convert_button = upload_conainter.button(
         label="Convert", 
-        type="primary",
+        # type="primary",
         on_click=save_files,
         args=(dbc_files, mdf_files),
         use_container_width=True
@@ -112,28 +115,19 @@ if (convert_button or st.session_state["converted"]) and files_uploaded:
 #########################################
 
 # display download button
-if st.session_state["converted"]:
-    st.sidebar.markdown("---")
+if st.session_state["converted"] and not st.session_state['downloaded']:
+    generate_output(groups, mdf_file_names)
 
-    st.sidebar.subheader("Download")
-    
-    # selected_files = st.sidebar.multiselect(label="Column Types", options=mdf_file_names)
-
-    # df_xlsx = "test"
-    # check_disable = False
-    # if not selected_files:
-    df_xlsx = dc.to_excel(groups["00000001.MF4"])
-        # df_xlsx = dc.to_excel(groups, selected_files)
-        # check_disable = True
-
-    st.sidebar.download_button(
-        label="Download Data",
-        data=df_xlsx,
-        file_name="output.xlsx",
-        mime="application/vnd.ms-excel",
-        type="primary",
-        use_container_width=True
-    )
+    with open("tmp/temp_output.zip", "rb") as fp:
+        st.sidebar.download_button(
+            label="Download Data",
+            data=fp,
+            file_name="output.zip",
+            mime="application/zip",
+            on_click=delete_zip,
+            type="primary",
+            use_container_width=True
+        )
 
 if __name__ == "__main__":
     st.caption("")

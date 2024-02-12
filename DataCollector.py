@@ -13,9 +13,6 @@ from io import BytesIO
 
 class DataCollector:
   def __init__(self, dbc_files: list = []) -> None:
-    if not os.path.exists('./output'):
-      os.mkdir('./output')
-
     if len(dbc_files) == 1:
       self.databases = {'CAN': [(dbc_files[0], 0)]}
     elif len(dbc_files) == 2:
@@ -92,25 +89,6 @@ class DataCollector:
       
     processed_data = output.getvalue()
     return processed_data
-
-  def to_zip(self, folder_name: str = 'output', *args):
-    processed_data = {}
-    for file in args:
-      print(file)
-      output = BytesIO()
-      
-      with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-        for key,group in groups[file].items():
-
-          group.to_excel(writer, sheet_name = key)
-          
-          workbook = writer.book
-          worksheet = writer.sheets[key]
-          
-          (maxRow,maxCol) = group.shape
-        
-      processed_data[file] = output.getvalue()
-    return processed_data["00000001.MF4"]
 
   def export(self, groups: dict, folder_name: str = 'output') -> BytesIO:
     """
