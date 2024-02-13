@@ -2,26 +2,11 @@ import streamlit as st
 import os, shutil
 from DataCollector import DataCollector
 
-@st.cache_data
-def convert(mdf_files, dbc_files):
-    print("\nconverting...")
-
-    dc = DataCollector(dbc_files)
-
-    mdf_file_names = [file.name for file in mdf_files]
-    groups = dict.fromkeys(mdf_file_names)
-
-    for file in mdf_files:
-        groups[file.name] = dc.parse(file)
-
-    generate_output(groups, mdf_file_names)
-    
-    return groups
-
-def reset_page():
-    delete_zip()
-    st.session_state["converted"]  = False
-    st.session_state["downloaded"] = False
+def process_convert(dbc_files, mdf_files):
+    save_files(dbc_files, mdf_files)
+    convert(dbc_files, mdf_files)
+    generate_output(mdf_files)
+    st.session_state["converted"] = True
 
 def save_files(dbc_files, mdf_files):
     for file in dbc_files:
@@ -30,29 +15,45 @@ def save_files(dbc_files, mdf_files):
             with open(os.path.join("./DBC Files", file.name), 'wb') as f:
                 f.write(bytes_data)
 
-def delete_zip():
-    if os.path.exists('tmp/temp_output.zip'):
-        os.remove('tmp/temp_output.zip')
+def convert(dbc_files, mdf_files):
+    print("\nconverting...")
 
-    if not os.path.exists('tmp/out/'):
-        os.makedirs(f'./tmp/out/')
+    dbc_path = [f'./DBC Files/{dbc.name}' for dbc in dbc_files]
+    dc = DataCollector(dbc_path)
 
-    for dir in os.listdir('tmp/out/'):
-        shutil.rmtree(f'tmp/out/{dir}')
+    mdf_file_names = [file.name for file in mdf_files]
+    groups = dict.fromkeys(mdf_file_names)
 
-    st.session_state["downloaded"] = True
+    for file in mdf_files:
+        groups[file.name] = dc.parse(file)
+    
+    st.session_state['groups'] = groups
 
-def generate_output(groups, mdf_file_names):
+def generate_output(mdf_files):
+    groups = st.session_state['groups']
+    os.makedirs('tmp/out/')
+    
     # loop through mdf files
-    for file in mdf_file_names:
-        file_prefix = file.split('.')[0]
+    for file in mdf_files:
+        file_prefix = file.name.split('.')[0]
 
         # create folder to store csv files
         os.makedirs(f'./tmp/out/{file_prefix}')
         
         # create csv for each PDO
-        for key,group in groups[file].items():
+        for key,group in groups[file.name].items():
             group.to_csv(f'./tmp/out/{file_prefix}/{key}')
     
     # zip output folders
     shutil.make_archive('tmp/temp_output', 'zip', 'tmp/out/')
+
+def reset_page():
+    delete_zip()
+    st.session_state["converted"]  = False
+    st.session_state["downloaded"] = False
+
+def delete_zip():
+    if os.path.exists('tmp/'):
+        shutil.rmtree('tmp/')
+
+    st.session_state["downloaded"] = True

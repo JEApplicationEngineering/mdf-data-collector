@@ -1,5 +1,6 @@
 # import streamlit, pandas, and numpy
 import streamlit as st
+import plotly.express as px
 
 from DataCollector import DataCollector
 from utils.dashboard import *
@@ -69,27 +70,21 @@ with st.sidebar:
     )
     convert_button = upload_conainter.button(
         label="Convert", 
-        # type="primary",
-        on_click=save_files,
+        on_click=process_convert,
         args=(dbc_files, mdf_files),
         use_container_width=True
     )
 
 #########################################
-
-# initialize data collector object
+    
 dbc_path = [f'./DBC Files/{dbc.name}' for dbc in dbc_files]
-dc = DataCollector(dbc_path)
+mdf_file_names = [file.name for file in mdf_files]
+groups = st.session_state['groups']
 
 #########################################
 
 # display selectbox with DBC groups
-if (convert_button or st.session_state["converted"]) and files_uploaded:
-    groups = convert(mdf_files, dbc_path)
-    st.session_state["converted"] = True
-
-    mdf_file_names = [file.name for file in mdf_files]
-
+if st.session_state["converted"] and files_uploaded:
     selected_file = st.selectbox(
         label="Select .MF4 to View",
         options=mdf_file_names,
@@ -105,12 +100,17 @@ if (convert_button or st.session_state["converted"]) and files_uploaded:
         print("displaying graphs...")
         st.subheader("Graphs")
 
-        # selected = st.session_state['selected_groups']
         group = groups[selected_file][selected_group]
         
+        # streamlit charts
         for name in group.columns:
             st.write(name)
             st.line_chart(group[name])
+        
+        # plotly charts
+        # fig = px.line(group, height=1000)
+        # fig.update_layout(legend_title=None, xaxis_title=None, hovermode='x unified')
+        # st.plotly_chart(fig, use_container_width=True)
 
 #########################################
 

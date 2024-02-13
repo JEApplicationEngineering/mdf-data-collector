@@ -5,8 +5,7 @@ import asammdf
 from io import BytesIO
 
 # TODO: format data into dataframe
-# TODO: utilize plotly instead of pandas.plot
-# TODO: consider changing .xlsx to .csv
+# TODO: utilize plotly instead of streamlit plot
 # TODO: find a way to bulk upload .mf4
 # TODO: add select file download option
 
