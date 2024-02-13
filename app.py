@@ -116,8 +116,6 @@ if (convert_button or st.session_state["converted"]) and files_uploaded:
 
 # display download button
 if st.session_state["converted"] and not st.session_state['downloaded']:
-    generate_output(groups, mdf_file_names)
-
     with open("tmp/temp_output.zip", "rb") as fp:
         st.sidebar.download_button(
             label="Download Data",

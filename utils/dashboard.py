@@ -13,6 +13,8 @@ def convert(mdf_files, dbc_files):
 
     for file in mdf_files:
         groups[file.name] = dc.parse(file)
+
+    generate_output(groups, mdf_file_names)
     
     return groups
 
