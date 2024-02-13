@@ -2,7 +2,8 @@
 import streamlit as st
 import plotly.express as px
 
-from DataCollector import DataCollector
+from datetime import time
+
 from utils.dashboard import *
 
 # TODO: add form to save to metadata.csv (cut height, ambient temp, etc.)
@@ -40,6 +41,11 @@ if "mdf_file_upload" not in st.session_state:
 else:
     files_uploaded = True if st.session_state["mdf_file_upload"] else False
 
+if "groups" not in st.session_state:
+    groups = None
+else:
+    groups = st.session_state['groups']
+
 #########################################
 
 # initialize headers
@@ -76,10 +82,48 @@ with st.sidebar:
     )
 
 #########################################
+
+# display metadata form in sidebar
+metadata_container = st.sidebar.expander('Metadata', expanded=False)
+
+tester_name = metadata_container.text_input("Tester Name")
+
+start_grass_height = metadata_container.radio(
+    "Starting Grass Height", 
+    options=[4, 3.75, 3.5, 3.25, 3, 2.75, 2.5, 2.25],
+    horizontal=True
+)
+end_grass_height = metadata_container.radio(
+    "Ending Grass Height", 
+    options=[3.75, 3.5, 3.25, 3, 2.75, 2.5, 2.25, 2], 
+    horizontal=True
+)
+
+row1_col1, row1_col2 = metadata_container.columns([1, 1])
+test_code = row1_col1.text_input("Test Code")
+test_area = row1_col2.text_input("Test Area")
+
+row2_col1, row2_col2, row2_col3 = metadata_container.columns([0.5, 0.5, 1])
+week_num = row2_col1.text_input("Week #")
+form_num = row2_col2.text_input("Form #")
+date     = row2_col3.date_input("Date")
+
+row3_col1, row3_col2 = metadata_container.columns([1, 1])
+start_time = row3_col1.time_input("Start Time", time(12, 0), step=60*15)
+end_time   = row3_col1.time_input("End Time", time(12, 0), step=60*15)
+start_temp = row3_col2.number_input("Start Amb. Temp.", min_value=40, max_value=110, value=70, step=5)
+end_temp   = row3_col2.number_input("End Amb. Temp.", min_value=40, max_value=110, value=70, step=5)
+
+# change to multiselect
+weather = metadata_container.text_input("Weather Conditions")
+test_conditions = metadata_container.text_input("Test Area Conditions")
+vehicle_conditions = metadata_container.text_input("Vehicle Operation")
+additional_notes = metadata_container.text_area("Additional Notes")
+
+#########################################
     
 dbc_path = [f'./DBC Files/{dbc.name}' for dbc in dbc_files]
 mdf_file_names = [file.name for file in mdf_files]
-groups = st.session_state['groups']
 
 #########################################
 
