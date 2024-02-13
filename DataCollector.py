@@ -7,7 +7,6 @@ from io import BytesIO
 # TODO: format data into dataframe
 # TODO: utilize plotly instead of pandas.plot
 # TODO: consider changing .xlsx to .csv
-# TODO: generate zip file for downloads
 # TODO: find a way to bulk upload .mf4
 # TODO: add select file download option
 
