@@ -32,6 +32,9 @@ def delete_zip():
     if os.path.exists('tmp/temp_output.zip'):
         os.remove('tmp/temp_output.zip')
 
+    if not os.path.exists('tmp/out/'):
+        os.makedirs(f'./tmp/out/')
+
     for dir in os.listdir('tmp/out/'):
         shutil.rmtree(f'tmp/out/{dir}')
 

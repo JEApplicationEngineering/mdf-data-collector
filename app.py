@@ -45,8 +45,6 @@ else:
 st.title("eZTR Data Collection")
 st.sidebar.header("File Uploader")
 
-os.makedirs('tmp/out/')
-
 #########################################
 
 # display file uploaders in sidebar
