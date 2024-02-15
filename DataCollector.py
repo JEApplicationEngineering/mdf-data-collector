@@ -112,9 +112,6 @@ class DataCollector:
         # worksheet.insert_image(2, maxCol + 2, f'./{folder_name}/{key}.png' )
         worksheet.insert_image(2, maxCol + 2, f'./output/{key}.png' )
 
-  def format_data(self):
-    pass
-
   def __get_group_names(self, extracted: asammdf.MDF) -> list:
     """
     Retrives and returns the group names of the mdf file as a list.

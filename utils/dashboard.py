@@ -37,6 +37,9 @@ def generate_output(mdf_files):
     for file in mdf_files:
         file_prefix = file.name.split('.')[0]
 
+        if os.path.exists(f'tmp/out/{file_prefix}'):
+            continue
+
         # create folder to store csv files
         os.makedirs(f'./tmp/out/{file_prefix}')
         

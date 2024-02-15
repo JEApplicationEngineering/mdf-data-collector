@@ -91,7 +91,7 @@ mdf_file_names = [file.name for file in mdf_files]
 
 #########################################
 
-# display selectbox with DBC groups
+# display each tab
 if st.session_state["converted"] and files_uploaded:
     metadata_tab(tab1)
     charts_tab(tab2, mdf_file_names, groups)
