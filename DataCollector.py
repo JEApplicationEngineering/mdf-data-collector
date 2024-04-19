@@ -42,14 +42,14 @@ class DataCollector:
     # change unsigned int on traction to signed
     for key,group in groups.items():
       if 'PDO1_Traction_L' in key:
-        needsUpdated = group.loc[group['Speed_Traction_L'] > 10000]
-        needsUpdated = needsUpdated['Speed_Traction_L'].apply(lambda x: x - 65535)
-        group.loc[needsUpdated.index, 'Speed_Traction_L'] = needsUpdated
+        needsUpdated = group.loc[group['RPM'] > 10000]
+        needsUpdated = needsUpdated['RPM'].apply(lambda x: x - 65535)
+        group.loc[needsUpdated.index, 'RPM'] = needsUpdated
 
       if 'PDO1_Traction_R' in key:
-        needsUpdated = group.loc[group['Speed_Traction_R'] > 10000]
-        needsUpdated = needsUpdated['Speed_Traction_R'].apply(lambda x: (x - 65535))
-        group.loc[needsUpdated.index, 'Speed_Traction_R'] = needsUpdated
+        needsUpdated = group.loc[group['RPM'] > 10000]
+        needsUpdated = needsUpdated['RPM'].apply(lambda x: (x - 65535))
+        group.loc[needsUpdated.index, 'RPM'] = needsUpdated
 
     return groups
   
